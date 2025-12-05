@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Your Name</title>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+:root {
+    --primary-color: #0D47A1;
+    --secondary-color: #E3F2FD;
+    --accent-color: #FFC107;
+}
+/* //text style */
+.typewriter {
+      /* font-size: px; */
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;          /* Prevent wrapping */
+      overflow: hidden;             /* Hide overflowing letters */
+      border-right: 4px solid #FFC107; /* Cursor effect */
+      width: 0;
+      animation: typing 3s steps(18) forwards, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 30ch; }  /* Number of characters (letters + spaces) */
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+/* //text style End*/
+
+body { font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+a { text-decoration: none; transition:0.3s; }
+a:hover { color: var(--accent-color); }
+
+.navbar { transition:0.4s; }
+.navbar.scrolled { background-color: var(--primary-color) !important; box-shadow:0 4px 25px rgba(0,0,0,0.2);}
+.navbar .nav-link { transition:0.3s; color:#fff; }
+.navbar .nav-link:hover { color: var(--accent-color); }
+
+section { padding: 80px 0; }
+
+#home { background: url('https://via.placeholder.com/1920x1080') center/cover no-repeat; color:#fff; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; }
+#home .overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(13,71,161,0.6); }
+#home .content { position:relative; text-align:center; z-index:2; }
+#home h1 { font-size:3rem; font-weight:700; }
+#home p { font-size:1.5rem; margin-top:15px; }
+
+/* About Section Image Animation */
+.profile-img-wrapper {
+  display: inline-block;
+  /* border-radius: 50%; */
+  padding: 5px;
+  background: linear-gradient(var(--primary-color), var(--accent-color));
+  /* animation: rotateBorder 6s linear infinite; */
+}
+
+.profile-img {
+  /* border-radius: 50%; */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: floatIn 1s ease forwards;
+}
+
+.profile-img:hover {
+  transform: scale(1.5) ;
+  /* box-shadow: 0 15px 30px rgba(0,0,0,0.3); */
+}
+
+/* Floating Entrance Animation */
+/* @keyframes floatIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+} */
+
+/* Rotating Border Animation */
+
+
+/* About Text Fade-in */
+.about-text p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: textFade 0.8s forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes textFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Highlighted Text */
+.about-text .highlight {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Skill Badges */
+.skill-badge {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin: 5px;
+  font-weight: 600;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.skill-badge:hover {
+  transform: scale(1.1);
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+
+#about, #skills, #projects, #contact { background-color: var(--secondary-color); }
+#about h2, #skills h2, #projects h2, #contact h2 { color: var(--primary-color); font-weight:700; margin-bottom:40px; text-align:center; }
+
+.skills .progress { height:25px; margin-bottom:20px; background-color:#fff; border-radius:12px; }
+.skills .progress-bar { background-color: var(--primary-color); font-weight:600; }
+
+.project-card { transition:0.3s; border:none; }
+.project-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
+
+/* //sercvices */
+#services { background-color: var(--secondary-color); padding: 80px 0; }
+#services h2 { color: var(--primary-color); font-weight:700; margin-bottom:60px; }
+
+.service-card {
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.service-card i {
+  transition: color 0.3s, transform 0.3s;
+}
+.service-card:hover i {
+  color: var(--accent-color);
+  transform: scale(1.2);
+}
+.service-card .btn {
+  transition: background 0.3s, color 0.3s;
+}
+.service-card .btn:hover {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+/* ================= TEAM ================= */
+
+
+/* ================= TEAM ================= */
+#team {
+  background-color: var(--secondary-color);
+  padding: 80px 0;
+}
+
+#team h2 {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+.team-card {
+  transition: transform 0.5s, box-shadow 0.5s;
+  opacity: 0;
+  /* transform: translateY(30px); */
+}
+
+.team-card:hover {
+  /* transform: translateY(-10px); */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Animated gradient border for images */
+.team-img-wrapper {
+  display: inline-block;
+  padding: 5px;
+  /* border-radius: 50%; */
+  /* background: linear-gradient(45deg, var(--primary-color), var(--accent-color)); */
+  /* animation: rotateBorder 6s linear infinite; */
+}
+/* .team-img-wrapper img{
+width: 260px;
+height: 400px;
+} */
+
+.team-img {
+  /* border-radius: 50%; */
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+
+
+/* Social icons */
+.team-card .social-icons a {
+  display: inline-block;
+  margin: 0 5px;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  /* transition: transform 0.3s, color 0.3s; */
+}
+
+.team-card .social-icons a:hover {
+  color: var(--accent-color);
+  /* transform: scale(1.3); */
+}
+
+/* Gradient rotation animation */
+
+
+
+.footer-section {
+  background: #0D47A1; 
+  color: #fff; 
+  font-size: 14px;
+}
+
+.footer-section h5 {
+  color: var(--accent-color);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-section p, .footer-section a {
+  color: #fff;
+  transition: 0.3s;
+}
+
+.footer-section a:hover {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.footer-section .social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  background: var(--accent-color);
+  color: #000;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.footer-section .social-icons a:hover {
+  background: #fff;
+  color: var(--accent-color);
+  transform: scale(1.2);
+}
+
+.footer-section .newsletter-form input {
+  border-radius: 50px 0 0 50px;
+}
+
+.footer-section .newsletter-form button {
+  border-radius: 0 50px 50px 0;
+  border: none;
+  background-color: var(--primary-color);
+  transition: 0.3s;
+}
+
+.footer-section .newsletter-form button:hover {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+
+.scroll-down { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); font-size:2rem; color:#fff; animation:bounce 2s infinite; }
+@keyframes bounce {0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0);}40%{transform:translateX(-50%) translateY(-10px);}60%{transform:translateX(-50%) translateY(-5px);}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #0D47A1;">
+<div class="container">
+  <a class="navbar-brand fw-bold text-white" href="#home"><span class="badge rounded-pill text-bg-warning">DEBOBROTO</span></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+      <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1 class="typewriter">Hello, I'm DEBOBROTO</h1>
+    <p>I'm a Web Developer & Designer</p>
+    <a href="#projects" class="btn btn-primary btn-lg mt-3">View Projects</a>
+  </div>
+  <a href="#about" class="scroll-down"><i class="bi bi-chevron-down"></i></a>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="position-relative">
+  <div class="container">
+    <h2 class="text-center mb-5"><span class="badge rounded-pill text-bg-warning">About Me</span>
+</h2>
+    <div class="row align-items-center">
+      
+      <!-- Profile Image -->
+      <div class="col-md-4 text-center mb-4 mb-md-0">
+        <div class="profile-img-wrapper">
+          <img src="./Joydeb.png" class="img-thumbnail profile-img" alt="Profile Picture">
+        </div>
+      </div>
+      
+      <!-- About Text -->
+      <div class="col-md-8 about-text">
+        <p>Hello! I'm <strong>DEBOBROTO</strong>, a passionate <span class="highlight">Web Developer</span> and designer creating modern, responsive, and interactive websites. I specialize in <strong>HTML5, CSS3, JavaScript, React, Node.js</strong>, and modern web frameworks to deliver efficient and scalable solutions.</p>
+        <p>I enjoy transforming complex ideas into <span class="highlight">seamless user experiences</span> and continuously learning the latest technologies. My goal is to build websites that are visually appealing, performant, and user-friendly.</p>
+        <a href="#projects" class="btn btn-primary mt-3">My Projects</a>
+      </div>
+      
+    </div>
+    
+    <!-- Skills Tags -->
+    <div class="row mt-5 justify-content-center">
+      <div class="col-auto">
+        <span class="skill-badge">HTML</span>
+      </div>
+      <div class="col-auto">
+        <span class="skill-badge">CSS</span>
+      </div>
+      <div class="col-auto">
+        <span class="skill-badge">JavaScript</span>
+      </div>
+      <div class="col-auto">
+        <span class="skill-badge">React</span>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="container">
+  <h2><span class="badge rounded-pill text-bg-warning">My Skills</span></h2>
+  <div class="skills">
+    <label>HTML</label>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width:90%">90%</div>
+    </div>
+    <label>CSS</label>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width:85%">85%</div>
+    </div>
+    <label>JavaScript</label>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width:80%">80%</div>
+    </div>
+    <label>React</label>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width:70%">70%</div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- ================= SERVICES ================= -->
+<section id="services" class="full-section">
+  <div class="container">
+    <h2 class="text-center mb-5"><span class="badge rounded-pill text-bg-warning">My Services</span></h2>
+    <div class="row g-4">
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100 text-center p-4 border-0 shadow-sm">
+          <i class="bi bi-code-slash display-4 text-primary mb-3"></i>
+          <h5 class="card-title">Web Development</h5>
+          <p class="card-text">Building responsive and modern websites using HTML, CSS, JS, and frameworks like React or Vue.</p>
+          <a href="#contact" class="btn btn-primary mt-3">Contact</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100 text-center p-4 border-0 shadow-sm">
+          <i class="bi bi-phone display-4 text-primary mb-3"></i>
+          <h5 class="card-title">Mobile App Development</h5>
+          <p class="card-text">Creating cross-platform mobile apps with smooth UI/UX for Android and iOS devices.</p>
+          <a href="#contact" class="btn btn-primary mt-3">Contact</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100 text-center p-4 border-0 shadow-sm">
+          <i class="bi bi-palette display-4 text-primary mb-3"></i>
+          <h5 class="card-title">UI/UX Design</h5>
+          <p class="card-text">Designing clean, user-friendly interfaces to enhance usability and engagement.</p>
+          <a href="#contact" class="btn btn-primary mt-3">Contact</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100 text-center p-4 border-0 shadow-sm">
+          <i class="bi bi-bar-chart-line display-4 text-primary mb-3"></i>
+          <h5 class="card-title">SEO Optimization</h5>
+          <p class="card-text">Boost your website visibility on search engines with proven SEO strategies.</p>
+          <a href="#contact" class="btn btn-primary mt-3">Contact</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100 text-center p-4 border-0 shadow-sm">
+          <i class="bi bi-bullseye display-4 text-primary mb-3"></i>
+          <h5 class="card-title">Digital Marketing</h5>
+          <p class="card-text">Creating effective marketing campaigns to grow your online presence and engagement.</p>
+          <a href="#contact" class="btn btn-primary mt-3">Contact</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100 text-center p-4 border-0 shadow-sm">
+          <i class="bi bi-briefcase display-4 text-primary mb-3"></i>
+          <h5 class="card-title">Branding & Identity</h5>
+          <p class="card-text">Building strong brand identities with logos, guidelines, and visual consistency.</p>
+          <a href="#contact" class="btn btn-primary mt-3">Contact</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="full-section">
+    <div class="container">
+        <h2 class="text-center mb-5"><span class="badge rounded-pill text-bg-warning">My Projects</span></h2>
+        <div class="row g-4">
+
+            <!-- Project Card 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Portfolio Website</h5>
+                        <p class="card-text">A modern and responsive personal portfolio website built with HTML, CSS, and JavaScript.</p>
+                        <a href="#" class="btn btn-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">E-commerce Website</h5>
+                        <p class="card-text">A fully functional e-commerce website with shopping cart and payment integration.</p>
+                        <a href="#" class="btn btn-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Blog Platform</h5>
+                        <p class="card-text">A content management system for blogs with user authentication and comment sections.</p>
+                        <a href="#" class="btn btn-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Landing Page Design</h5>
+                        <p class="card-text">A modern, mobile-friendly landing page optimized for conversions.</p>
+                        <a href="#" class="btn btn-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Web Application</h5>
+                        <p class="card-text">An interactive web application with dynamic content using JavaScript and API integration.</p>
+                        <a href="#" class="btn btn-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 6 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Admin Dashboard</h5>
+                        <p class="card-text">A responsive admin dashboard template with charts, tables, and user management.</p>
+                        <a href="#" class="btn btn-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ================= TEAM ================= -->
+<!-- ================= TEAM ================= -->
+<!-- ================= TEAM ================= -->
+<section id="team">
+  <div class="container">
+    <h2 class="text-center mb-5"><span class="badge rounded-pill text-bg-warning">Meet Our Team</span></h2>
+    <div class="row g-4 justify-content-center">
+
+      <!-- Team Member 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card team-card text-center border-0 shadow-sm p-3">
+          <div class="team-img-wrapper mb-3">
+            <img src="./Joydeb.png" class="img-thumbnail team-img" alt="Alice Johnson">
+          </div>
+          <h5 class="card-title">Joyde Broto Roy</h5>
+          <p class="card-text text-muted">Lead Developer</p>
+          <p class="card-text small">Expert in front-end development and React.</p>
+          <div class="social-icons mt-2">
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card team-card text-center border-0 shadow-sm p-3">
+          <div class="team-img-wrapper mb-3">
+            <img src="./Anshu.png" class="img-thumbnail team-img" alt="Michael Smith">
+          </div>
+          <h5 class="card-title">Anshu Yadab Raj</h5>
+          <p class="card-text text-muted">UI/UX Designer</p>
+          <p class="card-text small">Designs beautiful and user-friendly interfaces.</p>
+          <div class="social-icons mt-2">
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-dribbble"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card team-card text-center border-0 shadow-sm p-3">
+          <div class="team-img-wrapper mb-3">
+            <img src="./Bablu.png" class="img-thumbnail team-img" alt="Sarah Lee">
+          </div>
+          <h5 class="card-title">Bablu Jaiswal</h5>
+          <p class="card-text text-muted">Project Manager</p>
+          <p class="card-text small">Keeps projects on track and ensures quality.</p>
+          <div class="social-icons mt-2">
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card team-card text-center border-0 shadow-sm p-3">
+          <div class="team-img-wrapper mb-3">
+            <img src="./Bajrang.png" class="img-thumbnail team-img" alt="David Kim">
+          </div>
+          <h5 class="card-title">Bajran Choudhary</h5>
+          <p class="card-text text-muted">Backend Developer</p>
+          <p class="card-text small">Specializes in Node.js, databases, and APIs.</p>
+          <div class="social-icons mt-2">
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card team-card text-center border-0 shadow-sm p-3">
+          <div class="team-img-wrapper mb-3">
+            <img src="./Shivam.png" class="img-thumbnail team-img" alt="Emma Brown">
+          </div>
+          <h5 class="card-title">Sheyansh Jaiswal</h5>
+          <p class="card-text text-muted">Digital Marketer</p>
+          <p class="card-text small">Expert in SEO, social media, and marketing campaigns.</p>
+          <div class="social-icons mt-2">
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card team-card text-center border-0 shadow-sm p-3">
+          <div class="team-img-wrapper mb-3">
+            <img src="https://via.placeholder.com/200" class="img-thumbnail team-img" alt="James Wilson">
+          </div>
+          <h5 class="card-title">Meet Panchal</h5>
+          <p class="card-text text-muted">QA Engineer</p>
+          <p class="card-text small">Ensures product quality with thorough testing.</p>
+          <div class="social-icons mt-2">
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+  <h2><span class="badge rounded-pill text-bg-warning">Contact Me</span></h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <form class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" required>
+          <div class="invalid-feedback">Please enter your name.</div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required>
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="5" required></textarea>
+          <div class="invalid-feedback">Please write a message.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <iframe src="https://maps.google.com/maps?q=New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
+<footer class="footer-section py-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- About -->
+      <div class="col-lg-3 col-md-6">
+        <h5>About Me</h5>
+        <p>I’m a web developer creating modern, responsive, and interactive websites with creativity and passion.</p>
+        <div class="social-icons mt-3">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-twitter"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-github"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-3 col-md-6">
+        <h5>Quick Links</h5>
+        <ul class="footer-links list-unstyled">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="col-lg-3 col-md-6">
+        <h5>Services</h5>
+        <ul class="footer-links list-unstyled">
+          <li><a href="#services">Web Development</a></li>
+          <li><a href="#services">UI/UX Design</a></li>
+          <li><a href="#services">Mobile Apps</a></li>
+          <li><a href="#services">SEO Optimization</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-3 col-md-6">
+        <h5>Newsletter</h5>
+        <p>Subscribe to receive the latest updates, tips, and offers.</p>
+        <form class="d-flex newsletter-form" id="newsletterForm">
+          <input type="email" class="form-control" placeholder="Email" required>
+          <button type="submit" class="btn btn-primary ms-2">Subscribe</button>
+        </form>
+        <small class="form-text text-muted mt-2">No spam, unsubscribe anytime.</small>
+      </div>
+
+    </div>
+
+    <hr class="mt-4 border-light">
+    <div class="text-center pt-3">
+      &copy; 2025 DEBOBROTO. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+window.addEventListener('scroll', function() {
+    document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Bootstrap validation
+(function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
+            form.classList.add('was-validated')
+        }, false)
+    })
+})();
+// Animate team cards on scroll
+const teamCards = document.querySelectorAll('.team-card');
+
+function revealTeamCards() {
+  const triggerBottom = window.innerHeight / 1.2;
+
+  teamCards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+
+    if(cardTop < triggerBottom){
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+window.addEventListener('scroll', revealTeamCards);
+window.addEventListener('load', revealTeamCards);
+
+
+</script>
+
+</body>
+</html>
